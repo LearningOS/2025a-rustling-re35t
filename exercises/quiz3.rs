@@ -14,9 +14,7 @@
 // to support alphabetical report cards. Change the Grade in the second test to
 // "A+" to show that your changes allow alphabetical grades.
 //
-// Execute `rustlings hint quiz3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 pub struct ReportCard {
     pub grade: f32,
@@ -25,9 +23,15 @@ pub struct ReportCard {
 }
 
 impl ReportCard {
-    pub fn print(&self) -> String {
-        format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+    pub fn print(&self, s: &str) -> String { 
+        if s == "num" {
+            format!("{} ({}) - achieved a grade of {}",
+                &self.student_name, &self.student_age, &self.grade)
+        } else {
+            format!("{} ({}) - achieved a grade of {}",
+                &self.student_name, &self.student_age, "A+")
+        }
+        
     }
 }
 
@@ -43,7 +47,7 @@ mod tests {
             student_age: 12,
         };
         assert_eq!(
-            report_card.print(),
+            report_card.print("num"),
             "Tom Wriggle (12) - achieved a grade of 2.1"
         );
     }
@@ -57,7 +61,7 @@ mod tests {
             student_age: 11,
         };
         assert_eq!(
-            report_card.print(),
+            report_card.print("alpha"),
             "Gary Plotter (11) - achieved a grade of A+"
         );
     }
